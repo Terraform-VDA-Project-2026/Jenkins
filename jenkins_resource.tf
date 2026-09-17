@@ -14,7 +14,7 @@ resource "azurerm_managed_disk" "mydisk" {
 
 resource "azurerm_virtual_network" "terra_vm_network" {
   name                = "terra_vm_network_01"
-  resource_group_name = "terraform"
+  resource_group_name = var.resource_group_name
   address_space       = var.vnet_address_space
   location            = var.my_location
 }
