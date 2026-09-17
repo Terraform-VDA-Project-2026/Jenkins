@@ -6,7 +6,7 @@ location = "east us"
 
 }
 
- 
+
 
 resource "azurerm_virtual_network" "terra_vm_network" {
 
