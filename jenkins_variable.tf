@@ -1,7 +1,7 @@
 variable "disk_name" {
   type        = string
   description = "It is the name of managed disk"
-default = terraform_jenkins
+default = "terraform_jenkins"
 }
 
 variable "my_location" {
@@ -17,6 +17,7 @@ variable "disk_size" {
 
 variable "public_network_access_enabled" {
   type    = bool
+  default = true
 }
 
 variable "vnet_address_space" {
@@ -36,4 +37,5 @@ variable "tags" {
 
 variable "resource_group_name" {
   type = string
+  default = "jenkins_rgs"
 }
