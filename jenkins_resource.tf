@@ -19,3 +19,16 @@ resource_group_name = azurerm_resource_group.jenkins_rg.name
 address_space = ["10.0.0.0/16"]
 
 }
+
+resource "azurerm_storage_account" "stg" {
+  name                     = "jenkinsstg12345"
+  resource_group_name      = azurerm_resource_group.jenkins_rg.name
+  location                 = azurerm_resource_group.jenkins_rg.location
+
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+
+  tags = {
+    Environment = "Dev"
+  }
+}
