@@ -7,6 +7,15 @@ terraform {
   }
 }
 
+terraform {
+  backend "azurerm" {
+    resource_group_name  = "jenkins-rg"
+    storage_account_name = "jenkinsstg12345"
+    container_name       = "terraform-container"
+    key                  = "terraform.tfstate"
+  }
+}
+
 provider "azurerm" {
   features {}
 }
