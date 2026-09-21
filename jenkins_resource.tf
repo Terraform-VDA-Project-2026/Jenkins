@@ -32,3 +32,9 @@ resource "azurerm_storage_account" "stg" {
     Environment = "Dev"
   }
 }
+
+resource "azurerm_storage_container" "container" {
+  name                  = "terraform-container"
+  storage_account_id    = azurerm_storage_account.stg.id
+  container_access_type = "private"
+}
