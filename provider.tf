@@ -9,7 +9,7 @@ terraform {
 
 terraform {
   backend "azurerm" {
-    resource_group_name  = azurerm_resource_group.jenkins_rg.name
+    resource_group_name  = "jenkins_rgs2"
     storage_account_name = "jenkinsstg12345"
     container_name       = "terraform-container"
     key                  = "jenkins.tfstate"
