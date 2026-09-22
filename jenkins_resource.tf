@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "jenkins_rg" {
 
-name = "jenkins_rgs2"
+name = "jenkins_rgs3"
 
 location = "east us"
 
