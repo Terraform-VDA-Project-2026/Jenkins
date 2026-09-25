@@ -2,10 +2,9 @@ pipeline {
     agent any
 
     stages {
-
         stage('Terraform Init') {
             steps {
-                bat 'terraform init'
+                bat 'terraform init -migrate-state -force-copy'
             }
         }
 
@@ -19,16 +18,6 @@ pipeline {
             steps {
                 bat 'terraform apply -auto-approve'
             }
-        }
-    }
-
-    post {
-        success {
-            echo 'Terraform deployment completed successfully.'
-        }
-
-        failure {
-            echo 'Terraform deployment failed.'
         }
     }
 }
