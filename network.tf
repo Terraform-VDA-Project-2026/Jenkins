@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "name" {
-  name     = "terraform"
+  name     = "jenrgs"
   location = "eastus"
 }
 
@@ -14,3 +14,4 @@ resource "azurerm_virtual_network" "vnet" {
     azurerm_resource_group.name
   ]
 }
+
