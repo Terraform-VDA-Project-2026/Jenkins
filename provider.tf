@@ -1,7 +1,7 @@
 terraform {
 
  backend "azurerm" {
-  storage_account_name = "jenkinsstatefile"
+  storage_account_name = "jenkinsterra"
   container_name = "state"
   resource_group_name = "jenrg"
   key = "terraform.tfstate"
