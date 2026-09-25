@@ -1,11 +1,12 @@
 terraform {
 
-  backend "azurerm" {
+ backend "azurerm" {
   storage_account_name = "jenkinsstatefile "
   container_name = "state"
   resource_group_name = "jenrgs"
+  key = "terraform.tfstate"
     
-  }
+ }
   required_providers {
     azurerm = {
       source = "hashicorp/azurerm"
@@ -16,4 +17,5 @@ terraform {
 provider "azurerm" {
   features {}
 }
+
 
