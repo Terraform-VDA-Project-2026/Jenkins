@@ -33,7 +33,7 @@ variable "tags" {
   type = map(string)
   default = {
 
-    "enviromment" = "prod"
+    "enviromment" = "dev"
   }
 }
 
