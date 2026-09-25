@@ -6,7 +6,5 @@ resource "azurerm_virtual_network" "terra_vm_network" {
   address_space       = var.vnet_address_space
   location            = var.my_location
 
-  tags = {
-    "enviromment" = "prod"
-  }
+  tags = var.tags
 }

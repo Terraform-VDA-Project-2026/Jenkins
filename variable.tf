@@ -28,3 +28,12 @@ variable "subscription_id" {
   default = "252026ba-6735-4965-9bbf-6bad9c701532"
 
 }
+
+variable "tags" {
+  type = map(string)
+  default = {
+
+    "enviromment" = "prod"
+  }
+}
+
