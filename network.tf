@@ -11,4 +11,6 @@ resource "azurerm_virtual_network" "terra_vm_network" {
   location            = var.my_location
 
   tags = var.tags
+
+  depends_on = [ azurerm_resource_group.name ]
 }
