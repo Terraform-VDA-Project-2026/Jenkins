@@ -8,11 +8,8 @@ terraform {
 
 provider "azurerm" {
   features {}
-  subscription_id = var.sub_id
 
+  subscription_id = "252026ba-6735-4965-9bbf-6bad9c701532"
 }
 
-
-variable "sub_id" {
-  type = string
-}
+v
