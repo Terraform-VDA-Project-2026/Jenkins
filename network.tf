@@ -1,16 +1,16 @@
-resource "azurerm_resource_group" "name" {
-  name = var.resource_group_name
-  location = var.my_location
+resource "azurerm_resource_group" "rg" {
+  name     = var.rg_name
+  location = var.location
 }
 
+resource "azurerm_virtual_network" "vnet" {
+  name                = var.vnet_name
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
 
-resource "azurerm_virtual_network" "terra_vm_network" {
-  name                = var.vnet
-  resource_group_name = var.resource_group_name
-  address_space       = var.vnet_address_space
-  location            = var.my_location
+  address_space = ["10.0.0.0/16"]
 
-  tags = var.tags
-
-  depends_on = [ azurerm_resource_group.name ]
+  depends_on = [
+    azurerm_resource_group.rg
+  ]
 }
