@@ -1,16 +1,16 @@
-resource "azurerm_resource_group" "rg" {
-  name     = var.rg_name
-  location = var.location
+resource "azurerm_resource_group" "name" {
+  name     = "terraform"
+  location = "eastus"
 }
 
 resource "azurerm_virtual_network" "vnet" {
-  name                = var.vnet_name
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
+  name                = "terra_vm_network_01"
+  location            = azurerm_resource_group.name.location
+  resource_group_name = azurerm_resource_group.name.name
 
   address_space = ["10.0.0.0/16"]
 
   depends_on = [
-    azurerm_resource_group.rg
+    azurerm_resource_group.name
   ]
 }
