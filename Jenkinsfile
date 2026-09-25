@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     stages {
+
         stage('Terraform Init') {
             steps {
                 bat 'terraform init'
@@ -10,14 +11,24 @@ pipeline {
 
         stage('Terraform Plan') {
             steps {
-                bat 'terraform plan -var="sub_id=252026ba-6735-4965-9bbf-6bad9c701532"'
+                bat 'terraform plan'
             }
         }
 
         stage('Terraform Apply') {
             steps {
-                bat 'terraform apply -auto-approve -var="sub_id=252026ba-6735-4965-9bbf-6bad9c701532"'
+                bat 'terraform apply -auto-approve'
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Terraform deployment completed successfully.'
+        }
+
+        failure {
+            echo 'Terraform deployment failed.'
         }
     }
 }
