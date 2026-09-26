@@ -2,19 +2,35 @@ pipeline {
     agent any
 
     stages {
+
         stage('Terraform Init') {
             steps {
-                bat 'terraform init -migrate-state -force-copy'
+                bat 'terraform init'
             }
         }
 
-        stage('Terraform Plan') {
+        stage('Terraform Validate') {
             steps {
-                bat 'terraform plan'
+                bat 'terraform fmt -check'
+                bat 'terraform validate'
             }
         }
 
-        stage('Terraform Apply') {
+        stage('Terraform Plan (Pull Request)') {
+            when {
+                not {
+                    branch 'main'
+                }
+            }
+            steps {
+                bat 'terraform plan -out=tfplan'
+            }
+        }
+
+        stage('Terraform Apply (After Merge)') {
+            when {
+                branch 'main'
+            }
             steps {
                 bat 'terraform apply -auto-approve'
             }
