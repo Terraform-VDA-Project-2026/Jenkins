@@ -9,26 +9,31 @@ pipeline {
             }
         }
 
-        stage('Terraform Plan') {
+        stage('Terraform Validate') {
             steps {
-                bat 'terraform plan'
+                bat 'terraform fmt -check'
+                bat 'terraform validate'
             }
         }
 
-        stage('Terraform Apply') {
+        stage('Terraform Plan (Pull Request)') {
+            when {
+                not {
+                    branch 'main'
+                }
+            }
+            steps {
+                bat 'terraform plan -out=tfplan'
+            }
+        }
+
+        stage('Terraform Apply (After Merge)') {
+            when {
+                branch 'main'
+            }
             steps {
                 bat 'terraform apply -auto-approve'
             }
-        }
-    }
-
-    post {
-        success {
-            echo 'Terraform deployment completed successfully.'
-        }
-
-        failure {
-            echo 'Terraform deployment failed.'
         }
     }
 }
