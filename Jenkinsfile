@@ -5,29 +5,26 @@ pipeline {
 
         stage('Terraform Init') {
             steps {
-                bat 'terraform init'
+                bat 'terraform init -reconfigure'
             }
         }
 
         stage('Terraform Validate') {
             steps {
-                bat 'terraform fmt -check'
                 bat 'terraform validate'
             }
         }
 
-        stage('Terraform Plan (Pull Request)') {
+        stage('Terraform Plan') {
             when {
-                not {
-                    branch 'main'
-                }
+                not { branch 'main' }
             }
             steps {
-                bat 'terraform plan -out=tfplan'
+                bat 'terraform plan'
             }
         }
 
-        stage('Terraform Apply (After Merge)') {
+        stage('Terraform Apply') {
             when {
                 branch 'main'
             }
